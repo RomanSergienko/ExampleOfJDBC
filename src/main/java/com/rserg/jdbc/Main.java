@@ -23,7 +23,7 @@ public class Main {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASS);
         Statement statement = connection.createStatement();)
         {
-
+            statement.execute("INSERT INTO animal(anim_name, anim_desc) VALUES ('name','desc')");
         }
         catch (SQLException e)
         {
