@@ -23,8 +23,11 @@ public class Main {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASS);
         Statement statement = connection.createStatement();)
         {
-           int res =  statement.executeUpdate("UPDATE animal SET anim_name='New animal' WHERE id=1");
-            System.out.println(res);
+           statement.addBatch("INSERT INTO animal(anim_name, anim_desc) VALUES ('batch1','desc1')");
+           statement.addBatch("INSERT INTO animal(anim_name, anim_desc) VALUES ('batch2','desc2')");
+           statement.addBatch("INSERT INTO animal(anim_name, anim_desc) VALUES ('batch3','desc3')");
+
+           statement.executeBatch();
         }
         catch (SQLException e)
         {
